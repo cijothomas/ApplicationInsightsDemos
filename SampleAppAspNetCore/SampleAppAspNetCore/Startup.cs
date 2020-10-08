@@ -26,8 +26,8 @@ namespace SampleAppAspNetCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddApplicationInsightsTelemetry("instrumentationkeygoeshere");
-            services.AddSingleton<ITelemetryInitializer>(new MyRoleNameInitializer("CustomRoleName"));
+            services.AddApplicationInsightsTelemetry();
+            services.AddSingleton<ITelemetryInitializer>(new MyRoleNameInitializer(Configuration["ApplicationInsights:CustomRoleNameOverride"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
